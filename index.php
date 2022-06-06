@@ -45,8 +45,8 @@ foreach($countProject as $project) {
     $pname[] = $project['name'];
     $count[] = $project['count'];
 }
-$pn = implode($pname, ' ","');
-$co = implode($count, ' ,');
+$pn = implode(' ","', $pname);
+$co = implode(' ,', $count);
 ?>
 
 

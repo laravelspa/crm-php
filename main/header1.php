@@ -144,13 +144,13 @@ $last_part = end($components);
               </a>
             </li>
             <li class="nav-item <?php echo $_SESSION['permission'] !== '0' ? 'd-none' : '';  ?>">
-              <a href="/fingerprint/index.php" class="nav-link <?php echo ($components[2] === 'fingerprint' && $last_part == 'index.php') ? 'active' : ''; ?>">
+              <a href="/fingerprint/index.php" class="nav-link <?php echo (isset($components[2]) && $components[2] === 'fingerprint' && $last_part == 'index.php') ? 'active' : ''; ?>">
                 <i class="fa fa-fire-alt nav-icon"></i>
                 <p>Fingerprint</p>
               </a>
             </li>
             <li class="nav-item <?php echo $_SESSION['permission'] !== '0' ? 'd-none' : '';  ?>">
-              <a href="/api/campaign/index.php" class="nav-link <?php echo ($components[2] === 'campaign' && $last_part == 'index.php') ? 'active' : ''; ?>">
+              <a href="/api/campaign/index.php" class="nav-link <?php echo (isset($components[2]) && $components[2] === 'campaign' && $last_part == 'index.php') ? 'active' : ''; ?>">
                 <i class="fa fa-fire-alt nav-icon"></i>
                 <p>Campaign</p>
               </a>
