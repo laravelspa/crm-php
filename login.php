@@ -84,7 +84,6 @@ if (isset($_POST['submit'])) {
         exit;
       }
       if ($fetch['permission'] == "7") {
-        var_dump('in fetch', $fetch);
         header("Location: status/approved.php");
         exit;
       }
@@ -125,7 +124,7 @@ if (isset($_POST['submit'])) {
     <div class="card">
       <div class="card-body login-card-body">
         <p class="login-box-msg">Sign in to start your session</p>
-        <?php if ($msg != '') {
+        <?php if (isset($msg) != '') {
           echo '<p class="text-center">' . $msg . '</p>';
         } ?>
         <form method="post">
