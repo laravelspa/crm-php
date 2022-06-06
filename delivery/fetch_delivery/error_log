@@ -1,0 +1,11 @@
+[01-Jul-2020 01:14:08 UTC] PHP Parse error:  syntax error, unexpected '3' (T_LNUMBER), expecting ']' in /home/healthyhub/public_html/crmtest/delivery/fetch_delivery/fetch_stage_leads.php on line 18
+[01-Jul-2020 01:14:13 UTC] PHP Parse error:  syntax error, unexpected '3' (T_LNUMBER), expecting ']' in /home/healthyhub/public_html/crmtest/delivery/fetch_delivery/fetch_stage_leads.php on line 18
+[18-Jul-2020 19:59:40 UTC] PHP Warning:  implode(): Invalid arguments passed in /home/healthyhub/public_html/crmtest/delivery/fetch_delivery/fetch_stage_leads.php on line 17
+[18-Jul-2020 20:12:33 UTC] PHP Warning:  Illegal string offset '' in /home/healthyhub/public_html/crmtest/delivery/fetch_delivery/fetch_stage_leads.php on line 20
+[18-Jul-2020 20:13:57 UTC] PHP Warning:  Illegal string offset '' in /home/healthyhub/public_html/crmtest/delivery/fetch_delivery/fetch_stage_leads.php on line 20
+[18-Jul-2020 20:13:57 UTC] PHP Warning:  Illegal string offset '' in /home/healthyhub/public_html/crmtest/delivery/fetch_delivery/fetch_stage_leads.php on line 20
+[18-Jul-2020 20:15:48 UTC] PHP Warning:  Illegal string offset '' in /home/healthyhub/public_html/crmtest/delivery/fetch_delivery/fetch_stage_leads.php on line 20
+[18-Jul-2020 20:50:27 UTC] PHP Parse error:  syntax error, unexpected ';' in /home/healthyhub/public_html/crmtest/delivery/fetch_delivery/fetch_processing_leads.php on line 24
+[18-Jul-2020 20:56:22 UTC] PHP Parse error:  syntax error, unexpected ';' in /home/healthyhub/public_html/crmtest/delivery/fetch_delivery/fetch_processing_leads.php on line 24
+[18-Jul-2020 20:56:33 UTC] PHP Parse error:  syntax error, unexpected ';' in /home/healthyhub/public_html/crmtest/delivery/fetch_delivery/fetch_processing_leads.php on line 24
+[18-Jul-2020 20:57:36 UTC] PHP Parse error:  syntax error, unexpected ';' in /home/healthyhub/public_html/crmtest/delivery/fetch_delivery/fetch_processing_leads.php on line 24
