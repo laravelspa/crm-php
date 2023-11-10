@@ -24,6 +24,9 @@ Of course, the program has many problems, but it served the purpose for the comp
 - **CSS** (Style Sheet Language)
 - **Javascript** (Scripting Language)
 
+## Frontend Framework
+- **Bootstrap**
+
 ## Javascript Library
 - **DataTables**
 - **SweetAlert**
