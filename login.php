@@ -1,6 +1,7 @@
 <?php
 ob_start();
 session_start();
+
 if (isset($_SESSION['permission']) && $_SESSION['permission'] === "0") {
   header("Location:index.php");
   exit;
@@ -44,7 +45,7 @@ if (isset($_POST['submit'])) {
   $stmt->execute();
   $mainCount = $stmt->rowCount();
   $fetch = $stmt->fetch(PDO::FETCH_ASSOC);
-  
+
   if ($mainCount > 0) {
     if (password_verify($password, $fetch['password'])) {
       $_SESSION['username'] = $name;

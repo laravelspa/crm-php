@@ -136,7 +136,7 @@ $output = [
   'recordsTotal'      => get_total_leads_records(),
   'recordsFiltered'   => $filtered_rows,
   'data'              => $data,
-  'orderby'           => $_POST['order'][0]['column']
+  // 'orderby'           => $_POST ? $_POST['order'][0]['column'] : ''
 ];
 
 echo json_encode($output);

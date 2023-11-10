@@ -4,7 +4,7 @@ session_start();
 if (isset($_SESSION['permission']) && !in_array($_SESSION['permission'], ['0', '7'])) {
   header('Location: ../login.php');
 }
-$pn = $_SESSION['pnorderd'] = $_GET['pn'];
+$pn = $_SESSION['pnorderd'] = $_GET && $_GET['pn'];
 include('../main/header1.php');
 include('../main/database.php');
 // All orders In Pending Table

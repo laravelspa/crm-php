@@ -4,7 +4,7 @@ session_start();
 if (isset($_SESSION['permission']) && !in_array($_SESSION['permission'], ['0', '7'])) {
   header('Location: ../login.php');
 }
-$pn = $_SESSION['pn'] = $_GET['pn'];
+$pn = $_SESSION['pn'] = $_GET && $_GET['pn'];
 include('../main/header1.php');
 include('../main/database.php');
 // // All orders In Pending Table
@@ -21,7 +21,7 @@ if ($projectsCount > 0) {
 }
 
 // Leads in Table Pending
-$pn = $_GET['pn'];
+$pn = $_GET && $_GET['pn'];
 if (isset($pn)) {
   // Group By Employee ID
   $where = isset($pn) && $pn !== 'all' ? " WHERE pname ='" . $pn . "' GROUP BY pending.emp_id" : ' GROUP BY pending.emp_id';

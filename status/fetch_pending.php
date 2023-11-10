@@ -5,7 +5,7 @@ include('../main/database.php');
 function get_total_one_new_records()
 {
     ob_start();
-    session_start();
+    // session_start();
     $getName = $_SESSION['pn'];
     $where = $getName !== 'all' ? "WHERE p.prname = '" . $getName . "'" : "";
     include('../main/database.php');

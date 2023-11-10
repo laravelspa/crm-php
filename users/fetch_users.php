@@ -4,7 +4,7 @@
     include('../main/database.php'); 
     function get_total_users_records() {
         ob_start();
-        session_start();
+        // session_start();
         $nameInId = $_SESSION['id'];
         include('../main/database.php');
         $query = "SELECT admin.*,parent.name as superparent FROM admins admin LEFT JOIN admins parent ON parent.id = admin.supervisor WHERE admin.id != '".$nameInId."'";

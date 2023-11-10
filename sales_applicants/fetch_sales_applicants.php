@@ -3,7 +3,7 @@
     include('../main/database.php'); 
     function get_total_users_records() {
         ob_start();
-        session_start();
+        // session_start();
         include('../main/database.php');
         $query = "SELECT * FROM sales_applicants WHERE deleted_at IS NULL";
         $stmt = $con->prepare($query);

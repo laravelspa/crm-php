@@ -1,6 +1,6 @@
 <?php
 ob_start();
-session_start();
+if(!isset($_SESSION)) session_start();
 
 if (!isset($_SESSION['permission']) || $_SESSION['permission'] === 'NULL') {
   header("Location: /login.php");

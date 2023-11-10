@@ -6,7 +6,7 @@ include('../main/database.php');
 function get_total_orderd_records()
 {
     ob_start();
-    session_start();
+    // session_start();
     $getName = $_SESSION['pnorderd'];
     $where = $getName !== 'all' ? " WHERE pname = '" . $getName . "'" : " WHERE pname IS NOT NULL";
     include('../main/database.php');
