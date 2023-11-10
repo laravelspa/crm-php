@@ -15,6 +15,8 @@ Of course, the program has many problems, but it served the purpose for the comp
 ## Tools
 - [AdminLTE Dashboard](https://adminlte.io/)
 
+## Requirements
+- PHP 7.4
 
 ## Languages
 - **PHP** (Programming Language)
