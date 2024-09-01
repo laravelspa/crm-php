@@ -1,21 +1,11 @@
-$(document).ready(function() {
-    $("#filter_emp").select2();
-    $("#filter_st").select2();
-    $("#filter_ci").select2();
-    $("#filter_wod").select2();
-    $("#filter_db").select2();
+$(document).ready(function () {
+    $("#filter_usr").select2();
 });
 
 function getRecords(
     url,
-    emp = "",
-    st = "",
-    df = "",
-    dl = "",
-    ci = "",
-    shi = "",
     table = "#table_id",
-    network = ""
+    data = {}
 ) {
     $.fn.dataTable.ext.classes.sPageButton = "paginate_custom_buttons";
     $(table).DataTable({
@@ -27,515 +17,86 @@ function getRecords(
         ajax: {
             url: url,
             method: "POST",
-            data: {
-                emp_id: emp,
-                status: st,
-                date_first: df,
-                date_last: dl,
-                city: ci,
-                shipping: shi,
-                network: network,
-            },
+            data: data,
         },
         language: {
             search: "",
-            searchPlaceholder: "Search.....",
+            searchPlaceholder: "اكتب ما تبحث عنه",
             processing: '<div class="overlay"><i class="fas fa-2x fa-sync-alt fa-spin"></i></div>',
         },
         lengthMenu: [
-            [10,15,20,25,30, 50, 100, 200,300],
-            [10,15,20,25,30, 50, 100, 200,300],
+            [10, 15, 20, 25, 30, 50, 100, 200, 300],
+            [10, 15, 20, 25, 30, 50, 100, 200, 300],
         ],
         columnDefs: [{ orderable: false, targets: 0 }],
         buttons: [{
-                extend: "colvis",
-                text: "<i class='fas fa-eye'></i>",
-                title: "",
-                collectionLayout: "fixed two-column",
-                className: "btn btn-sm btn-outline-dark",
-                bom: "true",
-                init: function(api, node, config) {
-                    $(node).removeClass("dt-button");
-                },
-            },
-            {
-                extend: "csv",
-                text: "<i class='fas fa-file-csv'></i>",
-                title: "",
-                filename: "Report Name",
-                className: "btn btn-sm btn-outline-success",
-                charset: "utf-8",
-                bom: "true",
-                init: function(api, node, config) {
-                    $(node).removeClass("dt-button");
-                },
-            },
-            {
-                extend: "excel",
-                text: "<i class='fas fa-file-excel'></i>",
-                title: "",
-                filename: "Report Name",
-                className: "btn btn-sm btn-outline-danger",
-                charset: "utf-8",
-                bom: "true",
-                init: function(api, node, config) {
-                    $(node).removeClass("dt-button");
-                },
-                exportOptions: {
-                    columns: [":visible"],
-                },
-            },
-            {
-                extend: "print",
-                text: "<i class='fas fa-file-pdf'></i>",
-                title: "",
-                filename: "Report Name",
-                className: "btn btn-sm btn-outline-primary",
-                charset: "utf-8",
-                bom: "true",
-                init: function(api, node, config) {
-                    $(node).removeClass("dt-button");
-                },
-                exportOptions: {
-                    columns: [":visible"],
-                },
-            },
-            {
-                extend: "copy",
-                text: "<i class='fas fa-copy'></i>",
-                title: "",
-                filename: "Report Name",
-                className: "btn btn-sm btn-outline-info",
-                charset: "utf-8",
-                bom: "true",
-                init: function(api, node, config) {
-                    $(node).removeClass("dt-button");
-                },
-                exportOptions: {
-                    columns: [":visible"],
-                },
-            },
-        ],
-    });
-}
-
-function getTerraleads(
-    url = "fetch_leads.php",
-    na = "",
-    cou = "",
-    ph = "",
-    add = "",
-    add_date = "",
-    table = "#terraleads"
-) {
-    $.fn.dataTable.ext.classes.sPageButton = "paginate_custom_buttons";
-    $(table).DataTable({
-        dom: "lBfrtip",
-        stateSave: true,
-        processing: true,
-        serverSide: true,
-        order: [],
-        ajax: {
-            url: url,
-            method: "POST",
-            data: {
-                name: na,
-                country: cou,
-                phone: ph,
-                address: add,
-                add_date: add_date,
+            extend: "colvis",
+            text: "<i class='fas fa-eye'></i>",
+            title: "",
+            collectionLayout: "fixed two-column",
+            className: "btn btn-sm btn-outline-dark",
+            bom: "true",
+            init: function (api, node, config) {
+                $(node).removeClass("dt-button");
             },
         },
-        language: {
-            search: "",
-            searchPlaceholder: "Search.....",
-            processing: '<div class="overlay"><i class="fas fa-2x fa-sync-alt fa-spin"></i></div>',
-        },
-        lengthMenu: [
-            [10,15,20,25,30, 50, 100, 200,300],
-            [10,15,20,25,30, 50, 100, 200,300],
-        ],
-        columnDefs: [{ orderable: false, targets: 0 }],
-        buttons: [{
-                extend: "colvis",
-                text: "<i class='fas fa-eye'></i>",
-                title: "",
-                collectionLayout: "fixed two-column",
-                className: "btn btn-sm btn-outline-dark",
-                bom: "true",
-                init: function(api, node, config) {
-                    $(node).removeClass("dt-button");
-                },
-            },
-            {
-                extend: "csv",
-                text: "<i class='fas fa-file-csv'></i>",
-                title: "",
-                filename: "Report Name",
-                className: "btn btn-sm btn-outline-success",
-                charset: "utf-8",
-                bom: "true",
-                init: function(api, node, config) {
-                    $(node).removeClass("dt-button");
-                },
-            },
-            {
-                extend: "excel",
-                text: "<i class='fas fa-file-excel'></i>",
-                title: "",
-                filename: "Report Name",
-                className: "btn btn-sm btn-outline-danger",
-                charset: "utf-8",
-                bom: "true",
-                init: function(api, node, config) {
-                    $(node).removeClass("dt-button");
-                },
-                exportOptions: {
-                    columns: [":visible"],
-                },
-            },
-            {
-                extend: "print",
-                text: "<i class='fas fa-file-pdf'></i>",
-                title: "",
-                filename: "Report Name",
-                className: "btn btn-sm btn-outline-primary",
-                charset: "utf-8",
-                bom: "true",
-                init: function(api, node, config) {
-                    $(node).removeClass("dt-button");
-                },
-                exportOptions: {
-                    columns: [":visible"],
-                },
-            },
-            {
-                extend: "copy",
-                text: "<i class='fas fa-copy'></i>",
-                title: "",
-                filename: "Report Name",
-                className: "btn btn-sm btn-outline-info",
-                charset: "utf-8",
-                bom: "true",
-                init: function(api, node, config) {
-                    $(node).removeClass("dt-button");
-                },
-                exportOptions: {
-                    columns: [":visible"],
-                },
-            },
-        ],
-    });
-}
-
-function getComboLeads(
-    url = "fetch_leads.php",
-    na = "",
-    ph = "",
-    created_at = "",
-    table = "#combo"
-) {
-    $.fn.dataTable.ext.classes.sPageButton = "paginate_custom_buttons";
-    $(table).DataTable({
-        dom: "lBfrtip",
-        stateSave: true,
-        processing: true,
-        serverSide: true,
-        order: [],
-        ajax: {
-            url: url,
-            method: "POST",
-            data: {
-                name: na,
-                phone: ph,
-                created_at: created_at,
+        {
+            extend: "csv",
+            text: "<i class='fas fa-file-csv'></i>",
+            title: "",
+            filename: "Report Name",
+            className: "btn btn-sm btn-outline-success",
+            charset: "utf-8",
+            bom: "true",
+            init: function (api, node, config) {
+                $(node).removeClass("dt-button");
             },
         },
-        language: {
-            search: "",
-            searchPlaceholder: "Search.....",
-            processing: '<div class="overlay"><i class="fas fa-2x fa-sync-alt fa-spin"></i></div>',
-        },
-        lengthMenu: [
-            [10,15,20,25,30, 50, 100, 200,300],
-            [10,15,20,25,30, 50, 100, 200,300],
-        ],
-        columnDefs: [{ orderable: false, targets: 0 }],
-        buttons: [{
-                extend: "colvis",
-                text: "<i class='fas fa-eye'></i>",
-                title: "",
-                collectionLayout: "fixed two-column",
-                className: "btn btn-sm btn-outline-dark",
-                bom: "true",
-                init: function(api, node, config) {
-                    $(node).removeClass("dt-button");
-                },
+        {
+            extend: "excel",
+            text: "<i class='fas fa-file-excel'></i>",
+            title: "",
+            filename: "Report Name",
+            className: "btn btn-sm btn-outline-danger",
+            charset: "utf-8",
+            bom: "true",
+            init: function (api, node, config) {
+                $(node).removeClass("dt-button");
             },
-            {
-                extend: "csv",
-                text: "<i class='fas fa-file-csv'></i>",
-                title: "",
-                filename: "Report Name",
-                className: "btn btn-sm btn-outline-success",
-                charset: "utf-8",
-                bom: "true",
-                init: function(api, node, config) {
-                    $(node).removeClass("dt-button");
-                },
-            },
-            {
-                extend: "excel",
-                text: "<i class='fas fa-file-excel'></i>",
-                title: "",
-                filename: "Report Name",
-                className: "btn btn-sm btn-outline-danger",
-                charset: "utf-8",
-                bom: "true",
-                init: function(api, node, config) {
-                    $(node).removeClass("dt-button");
-                },
-                exportOptions: {
-                    columns: [":visible"],
-                },
-            },
-            {
-                extend: "print",
-                text: "<i class='fas fa-file-pdf'></i>",
-                title: "",
-                filename: "Report Name",
-                className: "btn btn-sm btn-outline-primary",
-                charset: "utf-8",
-                bom: "true",
-                init: function(api, node, config) {
-                    $(node).removeClass("dt-button");
-                },
-                exportOptions: {
-                    columns: [":visible"],
-                },
-            },
-            {
-                extend: "copy",
-                text: "<i class='fas fa-copy'></i>",
-                title: "",
-                filename: "Report Name",
-                className: "btn btn-sm btn-outline-info",
-                charset: "utf-8",
-                bom: "true",
-                init: function(api, node, config) {
-                    $(node).removeClass("dt-button");
-                },
-                exportOptions: {
-                    columns: [":visible"],
-                },
-            },
-        ],
-    });
-}
-
-function getCampaigns(
-    url = "fetch_campaigns.php",
-    name = "",
-    c_id = "",
-    table = "#table_id"
-) {
-    $.fn.dataTable.ext.classes.sPageButton = "paginate_custom_buttons";
-    $(table).DataTable({
-        dom: "lBfrtip",
-        stateSave: true,
-        processing: true,
-        serverSide: true,
-        order: [],
-        ajax: {
-            url: url,
-            method: "POST",
-            data: {
-                name: name,
-                campaign_id: c_id,
+            exportOptions: {
+                columns: [":visible"],
             },
         },
-        language: {
-            search: "",
-            searchPlaceholder: "Search.....",
-            processing: '<div class="overlay"><i class="fas fa-2x fa-sync-alt fa-spin"></i></div>',
-        },
-        lengthMenu: [
-            [10,15,20,25,30, 50, 100, 200,300],
-            [10,15,20,25,30, 50, 100, 200,300],
-        ],
-        columnDefs: [{ orderable: false, targets: 0 }],
-        buttons: [{
-                extend: "colvis",
-                text: "<i class='fas fa-eye'></i>",
-                title: "",
-                collectionLayout: "fixed two-column",
-                className: "btn btn-sm btn-outline-dark",
-                bom: "true",
-                init: function(api, node, config) {
-                    $(node).removeClass("dt-button");
-                },
+        {
+            extend: "print",
+            text: "<i class='fas fa-file-pdf'></i>",
+            title: "",
+            filename: "Report Name",
+            className: "btn btn-sm btn-outline-primary",
+            charset: "utf-8",
+            bom: "true",
+            init: function (api, node, config) {
+                $(node).removeClass("dt-button");
             },
-            {
-                extend: "csv",
-                text: "<i class='fas fa-file-csv'></i>",
-                title: "",
-                filename: "Report Name",
-                className: "btn btn-sm btn-outline-success",
-                charset: "utf-8",
-                bom: "true",
-                init: function(api, node, config) {
-                    $(node).removeClass("dt-button");
-                },
-            },
-            {
-                extend: "excel",
-                text: "<i class='fas fa-file-excel'></i>",
-                title: "",
-                filename: "Report Name",
-                className: "btn btn-sm btn-outline-danger",
-                charset: "utf-8",
-                bom: "true",
-                init: function(api, node, config) {
-                    $(node).removeClass("dt-button");
-                },
-                exportOptions: {
-                    columns: [":visible"],
-                },
-            },
-            {
-                extend: "print",
-                text: "<i class='fas fa-file-pdf'></i>",
-                title: "",
-                filename: "Report Name",
-                className: "btn btn-sm btn-outline-primary",
-                charset: "utf-8",
-                bom: "true",
-                init: function(api, node, config) {
-                    $(node).removeClass("dt-button");
-                },
-                exportOptions: {
-                    columns: [":visible"],
-                },
-            },
-            {
-                extend: "copy",
-                text: "<i class='fas fa-copy'></i>",
-                title: "",
-                filename: "Report Name",
-                className: "btn btn-sm btn-outline-info",
-                charset: "utf-8",
-                bom: "true",
-                init: function(api, node, config) {
-                    $(node).removeClass("dt-button");
-                },
-                exportOptions: {
-                    columns: [":visible"],
-                },
-            },
-        ],
-    });
-}
-
-
-function getFingerprints(
-    url = "fetch_fingerprints.php",
-    name = "",
-    value = "",
-    table = "#table_id"
-) {
-    $.fn.dataTable.ext.classes.sPageButton = "paginate_custom_buttons";
-    $(table).DataTable({
-        dom: "lBfrtip",
-        stateSave: true,
-        processing: true,
-        serverSide: true,
-        order: [],
-        ajax: {
-            url: url,
-            method: "POST",
-            data: {
-                name: name,
-                value: value,
+            exportOptions: {
+                columns: [":visible"],
             },
         },
-        language: {
-            search: "",
-            searchPlaceholder: "Search.....",
-            processing: '<div class="overlay"><i class="fas fa-2x fa-sync-alt fa-spin"></i></div>',
+        {
+            extend: "copy",
+            text: "<i class='fas fa-copy'></i>",
+            title: "",
+            filename: "Report Name",
+            className: "btn btn-sm btn-outline-info",
+            charset: "utf-8",
+            bom: "true",
+            init: function (api, node, config) {
+                $(node).removeClass("dt-button");
+            },
+            exportOptions: {
+                columns: [":visible"],
+            },
         },
-        lengthMenu: [
-            [10,15,20,25,30, 50, 100, 200,300],
-            [10,15,20,25,30, 50, 100, 200,300],
-        ],
-        columnDefs: [{ orderable: false, targets: 0 }],
-        buttons: [{
-                extend: "colvis",
-                text: "<i class='fas fa-eye'></i>",
-                title: "",
-                collectionLayout: "fixed two-column",
-                className: "btn btn-sm btn-outline-dark",
-                bom: "true",
-                init: function(api, node, config) {
-                    $(node).removeClass("dt-button");
-                },
-            },
-            {
-                extend: "csv",
-                text: "<i class='fas fa-file-csv'></i>",
-                title: "",
-                filename: "Report Name",
-                className: "btn btn-sm btn-outline-success",
-                charset: "utf-8",
-                bom: "true",
-                init: function(api, node, config) {
-                    $(node).removeClass("dt-button");
-                },
-            },
-            {
-                extend: "excel",
-                text: "<i class='fas fa-file-excel'></i>",
-                title: "",
-                filename: "Report Name",
-                className: "btn btn-sm btn-outline-danger",
-                charset: "utf-8",
-                bom: "true",
-                init: function(api, node, config) {
-                    $(node).removeClass("dt-button");
-                },
-                exportOptions: {
-                    columns: [":visible"],
-                },
-            },
-            {
-                extend: "print",
-                text: "<i class='fas fa-file-pdf'></i>",
-                title: "",
-                filename: "Report Name",
-                className: "btn btn-sm btn-outline-primary",
-                charset: "utf-8",
-                bom: "true",
-                init: function(api, node, config) {
-                    $(node).removeClass("dt-button");
-                },
-                exportOptions: {
-                    columns: [":visible"],
-                },
-            },
-            {
-                extend: "copy",
-                text: "<i class='fas fa-copy'></i>",
-                title: "",
-                filename: "Report Name",
-                className: "btn btn-sm btn-outline-info",
-                charset: "utf-8",
-                bom: "true",
-                init: function(api, node, config) {
-                    $(node).removeClass("dt-button");
-                },
-                exportOptions: {
-                    columns: [":visible"],
-                },
-            },
         ],
     });
 }
@@ -571,7 +132,7 @@ function deleteAll(url, table, msg, emptyMsg, cancelMsg) {
     formData.append("table", table);
     swal
         .fire({
-            title: "Are you sure?",
+            title: "هل أنت متأكد?",
             text: msg,
             icon: "warning",
             buttons: true,
@@ -583,9 +144,9 @@ function deleteAll(url, table, msg, emptyMsg, cancelMsg) {
                     swal.fire(emptyMsg, "", "warning");
                 } else {
                     fetch(url, {
-                            method: "POST",
-                            body: formData,
-                        })
+                        method: "POST",
+                        body: formData,
+                    })
                         .then((res) => {
                             return res.json();
                         })
@@ -593,10 +154,10 @@ function deleteAll(url, table, msg, emptyMsg, cancelMsg) {
                             if (response.text === true) {
                                 checkedAll.checked = false;
                                 $("#table_id").DataTable().ajax.reload(null, false);
-                                $("#terraleads").DataTable().ajax.reload(null, false);
-                                swal.fire("Deleted Done!", "", "success");
+
+                                swal.fire("تم الحذف بنجاح!", "", "success");
                             } else {
-                                swal.fire("Something wronge!", "", "error");
+                                swal.fire("هناك خطأ ما!", "", "error");
                             }
                         });
                 }
@@ -613,7 +174,7 @@ function deleteOne(id, table, msg, url, cancelMsg) {
 
     swal
         .fire({
-            title: "Are you sure?",
+            title: "هل أنت متأكد?",
             text: msg,
             icon: "warning",
             buttons: true,
@@ -622,19 +183,19 @@ function deleteOne(id, table, msg, url, cancelMsg) {
         .then((willDelete) => {
             if (willDelete.value === true) {
                 fetch(url, {
-                        method: "POST",
-                        body: formData,
-                    })
+                    method: "POST",
+                    body: formData,
+                })
                     .then((res) => {
                         return res.json();
                     })
                     .then((response) => {
                         if (response.text === true) {
-                            swal.fire("Deleted Done!", "", "success");
+                            swal.fire("تم الحذف بنجاح!", "", "success");
                             $("#table_id").DataTable().ajax.reload(null, false);
-                            $("#terraleads").DataTable().ajax.reload(null, false);
+
                         } else {
-                            swal.fire("Something wronge!", "", "error");
+                            swal.fire("هناك خطأ ما!", "", "error");
                         }
                     });
             } else {
@@ -670,7 +231,7 @@ function updateAll(url, table, msg, emptyMsg, cancelMsg, emp = null) {
 
     swal
         .fire({
-            title: "Are you sure?",
+            title: "هل أنت متأكد?",
             text: msg,
             icon: "warning",
             buttons: true,
@@ -684,9 +245,9 @@ function updateAll(url, table, msg, emptyMsg, cancelMsg, emp = null) {
                     $("#wallModal").modal("hide");
                     $("#addEmpToLeadModal").modal("hide");
                     fetch(url, {
-                            method: "POST",
-                            body: formData,
-                        })
+                        method: "POST",
+                        body: formData,
+                    })
                         .then((res) => {
                             return res.json();
                         })
@@ -695,9 +256,9 @@ function updateAll(url, table, msg, emptyMsg, cancelMsg, emp = null) {
                                 checkedAll.checked = false;
                                 employee = null;
                                 $("#table_id").DataTable().ajax.reload(null, false);
-                                swal.fire("Edit Done!", "", "success");
+                                swal.fire("تم التحديث بنجاح!", "", "success");
                             } else {
-                                swal.fire("Something wronge!", "", "error");
+                                swal.fire("هناك خطأ ما!", "", "error");
                             }
                         });
                 }
@@ -731,7 +292,7 @@ function updateOrders(url, table, msg, emptyMsg, cancelMsg) {
 
     swal
         .fire({
-            title: "Are you sure?",
+            title: "هل أنت متأكد?",
             text: msg,
             icon: "warning",
             buttons: true,
@@ -744,9 +305,9 @@ function updateOrders(url, table, msg, emptyMsg, cancelMsg) {
                 } else {
                     $("#addCancelOrdersToEmpModal").modal("hide");
                     fetch(url, {
-                            method: "POST",
-                            body: formData,
-                        })
+                        method: "POST",
+                        body: formData,
+                    })
                         .then((res) => {
                             return res.json();
                         })
@@ -754,9 +315,9 @@ function updateOrders(url, table, msg, emptyMsg, cancelMsg) {
                             if (response.text === true) {
                                 checkedAll.checked = false;
                                 $("#table_id").DataTable().ajax.reload(null, false);
-                                swal.fire("Edit Done!", "", "success");
+                                swal.fire("تم التحديث بنجاح!", "", "success");
                             } else {
-                                swal.fire("Something wronge!", "", "error");
+                                swal.fire("هناك خطأ ما!", "", "error");
                             }
                         });
                 }
@@ -765,41 +326,3 @@ function updateOrders(url, table, msg, emptyMsg, cancelMsg) {
             }
         });
 }
-
-// History Of Order
-$(document).on("click", "#history", function() {
-    var order_id = $(this).data("id");
-    var pending_id = $(this).data("pending");
-    var history_body = $(".history_body");
-    const formdata = new FormData();
-    formdata.append("order_id", order_id);
-    formdata.append("pending_id", pending_id);
-    fetch("/history_info.php", {
-            method: "POST",
-            body: formdata,
-        })
-        .then((res) => {
-            return res.json();
-        })
-        .then((r) => {
-            $html = "";
-            if (r.result.length > 0) {
-                for (var i = 0; i < r.result.length; i++) {
-                    $html +=
-                        '<div class="p-2 mb-1 border border-danger"><span class="font-weight-bold">Sales: </span><span>' +
-                        r.result[i]["operator"] +
-                        '</span><br> <span class="font-weight-bold">Action: </span><span>' +
-                        r.result[i]["action"] +
-                        '</span><br> <span class="font-weight-bold">Comment: </span><span>' +
-                        r.result[i]["comment"] +
-                        '</span><br><span class="font-weight-bold"> Action at: </span> <span>' +
-                        r.result[i]["created_at"] +
-                        "</span></div>";
-                }
-            } else {
-                $html =
-                    '<div class="p-2 mb-1 border border-danger"><span>No History Available!</span></div>';
-            }
-            history_body.html($html);
-        });
-});

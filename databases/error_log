@@ -1,7 +1,0 @@
-[04-Jul-2020 01:04:33 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/healthyhub/public_html/crmtest/databases/fetch_dbs.php:12) in /home/healthyhub/public_html/crmtest/databases/fetch_dbs.php on line 13
-[04-Jul-2020 01:06:14 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/healthyhub/public_html/crmtest/databases/fetch_dbs.php:12) in /home/healthyhub/public_html/crmtest/databases/fetch_dbs.php on line 13
-[04-Jul-2020 01:06:44 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/healthyhub/public_html/crmtest/databases/fetch_dbs.php:12) in /home/healthyhub/public_html/crmtest/databases/fetch_dbs.php on line 13
-[04-Jul-2020 02:39:21 UTC] PHP Fatal error:  Uncaught Error: Call to a member function prepare() on null in /home/healthyhub/public_html/crmtest/databases/orders.php:30
-Stack trace:
-#0 {main}
-  thrown in /home/healthyhub/public_html/crmtest/databases/orders.php on line 30

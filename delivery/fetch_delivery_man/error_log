@@ -1,2 +1,0 @@
-[30-Jun-2020 03:38:59 UTC] PHP Parse error:  syntax error, unexpected '9' (T_LNUMBER), expecting ']' in /home/healthyhub/public_html/crmtest/delivery/fetch_delivery_man/fetch_new_leads.php on line 24
-[30-Jun-2020 03:39:04 UTC] PHP Parse error:  syntax error, unexpected '9' (T_LNUMBER), expecting ']' in /home/healthyhub/public_html/crmtest/delivery/fetch_delivery_man/fetch_new_leads.php on line 24

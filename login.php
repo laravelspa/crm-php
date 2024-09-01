@@ -1,96 +1,35 @@
 <?php
 ob_start();
 session_start();
-
-if (isset($_SESSION['permission']) && $_SESSION['permission'] === "0") {
-  header("Location:index.php");
-  exit;
-}
-if (isset($_SESSION['permission']) && $_SESSION['permission'] === "1") {
-  header("Location:delivery/index.php");
-  exit;
-}
-if (isset($_SESSION['permission']) && $_SESSION['permission'] === "3") {
-  header("Location:delivery/supd-cairo.php");
-  exit;
-}
-if (isset($_SESSION['permission']) && $_SESSION['permission'] === "4") {
-  header("Location:delivery/supa-cairo.php");
-  exit;
-}
-if (isset($_SESSION['permission']) && $_SESSION['permission'] === "5") {
-  header("Location:delivery/delivery_man.php");
-  exit;
-}
-if (isset($_SESSION['permission']) && $_SESSION['permission'] === "6") {
-  header("Location:delivery/index.php");
-  exit;
-}
-if (isset($_SESSION['permission']) && $_SESSION['permission'] === "2") {
-  header("Location: employee/employee.php");
-  exit;
-}
-if (isset($_SESSION['permission']) && $_SESSION['permission'] === "7") {
-  header("Location: status/approved.php");
-  exit;
-}
-
 include "main/database.php";
+
+if (isset($_SESSION['login']) && $_SESSION['login']) {
+  header("Location:users/index.php");
+  return;
+}
+
+$msg = '';
 if (isset($_POST['submit'])) {
   $name = isset($_POST['name']) ? $_POST['name'] : '';
   $password = isset($_POST['password']) ? $_POST['password'] : '';
 
-  $stmt = $con->prepare('SELECT * FROM admins WHERE name=:name LIMIT 1');
+  $stmt = $con->prepare('SELECT * FROM users WHERE name=:name LIMIT 1');
   $stmt->bindParam("name", $name, PDO::PARAM_STR);
   $stmt->execute();
   $mainCount = $stmt->rowCount();
   $fetch = $stmt->fetch(PDO::FETCH_ASSOC);
-
   if ($mainCount > 0) {
     if (password_verify($password, $fetch['password'])) {
       $_SESSION['username'] = $name;
       $_SESSION['id'] = $fetch['id'];
-      $_SESSION['permission'] = $fetch['permission'];
+      $_SESSION['login'] = 1;
+      $_SESSION['is_admin'] = $fetch['is_admin'];
 
-      $stmt = $con->prepare("UPDATE admins SET online = 1 WHERE id = :id");
-      $stmt->bindParam("id", $_SESSION['id'], PDO::PARAM_STR);
-      $stmt->execute();
-
-      if ($fetch['permission'] === "0") {
-        header("Location:index.php");
-        exit;
-      }
-      if ($fetch['permission'] === "1") {
-        header("Location:delivery/index.php");
-        exit;
-      }
-      if ($fetch['permission'] === "3") {
-        header("Location:delivery/supd-cairo.php");
-        exit;
-      }
-      if ($fetch['permission'] === "4") {
-        header("Location:delivery/supa-cairo.php");
-        exit;
-      }
-      if ($fetch['permission'] === "5") {
-        header("Location:delivery/delivery_man.php");
-        exit;
-      }
-      if ($fetch['permission'] === "6") {
-        header("Location:delivery/index.php");
-        exit;
-      }
-      if ($fetch['permission'] === "2") {
-        header("Location:employee/employee.php");
-        exit;
-      }
-      if ($fetch['permission'] == "7") {
-        header("Location: status/approved.php");
-        exit;
-      }
+      header("Location:users/index.php");
+      exit;
     }
-  } else {
-    $msg = "<span class='text-danger'>Username or Password Invalid!</span>";
+
+    $msg = "<span class='text-danger'>الأسم أو كلمة المرور غير صحيحة</span>";
   }
 }
 ?>
@@ -100,7 +39,7 @@ if (isset($_POST['submit'])) {
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>HealthyCURE | Log in</title>
+  <title>شهادات | تسجيل الدخول</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -114,23 +53,25 @@ if (isset($_POST['submit'])) {
   <link rel="stylesheet" href="dist/css/adminlte.min.css">
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+  <!-- RTL style -->
+  <link rel="stylesheet" href="css/custom.css">
 </head>
 
 <body class="hold-transition login-page">
   <div class="login-box">
     <div class="login-logo">
-      <p><b>Healthy</b>CURE</p>
+      <p><b>نظام</b> الشهادات</p>
     </div>
     <!-- /.login-logo -->
     <div class="card">
       <div class="card-body login-card-body">
-        <p class="login-box-msg">Sign in to start your session</p>
+        <p class="login-box-msg">الدخول الى النظام</p>
         <?php if (isset($msg) != '') {
           echo '<p class="text-center">' . $msg . '</p>';
         } ?>
         <form method="post">
           <div class="input-group mb-3">
-            <input type="text" class="form-control" placeholder="Username" name="name" required>
+            <input type="text" class="form-control" placeholder="إسم المستخدم" name="name" required>
             <div class="input-group-append">
               <div class="input-group-text">
                 <span class="fas fa-user"></span>
@@ -138,7 +79,7 @@ if (isset($_POST['submit'])) {
             </div>
           </div>
           <div class="input-group mb-3">
-            <input type="password" class="form-control" placeholder="Password" name="password" required>
+            <input type="password" class="form-control" placeholder="كلمة المرور" name="password" required>
             <div class="input-group-append">
               <div class="input-group-text">
                 <span class="fas fa-lock"></span>
@@ -147,7 +88,7 @@ if (isset($_POST['submit'])) {
           </div>
           <div class="row">
             <div class="col-12">
-              <button type="submit" name="submit" class="btn btn-primary btn-block">Log In</button>
+              <button type="submit" name="submit" class="btn btn-primary btn-block">تسجيل الدخول</button>
             </div>
             <!-- /.col -->
           </div>
